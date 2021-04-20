@@ -12,84 +12,62 @@ import java.util.Locale;
  */
 public class ResponseFacade implements ServletResponse {
 
-    private ServletResponse response=null;
+    private ServletResponse response;
 
-    public ResponseFacade(ServletResponse response) {
+    public ResponseFacade(Response response) {
         this.response = response;
     }
 
-    @Override
-    public String getCharacterEncoding() {
-        return null;
-    }
-
-    @Override
-    public String getContentType() {
-        return null;
-    }
-
-    @Override
-    public ServletOutputStream getOutputStream() throws IOException {
-        return null;
-    }
-
-    @Override
-    public PrintWriter getWriter() throws IOException {
-        return null;
-    }
-
-    @Override
-    public void setCharacterEncoding(String s) {
-
-    }
-
-    @Override
-    public void setContentLength(int i) {
-
-    }
-
-    @Override
-    public void setContentType(String s) {
-
-    }
-
-    @Override
-    public void setBufferSize(int i) {
-
-    }
-
-    @Override
-    public int getBufferSize() {
-        return 0;
-    }
-
-    @Override
     public void flushBuffer() throws IOException {
-
+        response.flushBuffer();
     }
 
-    @Override
-    public void resetBuffer() {
-
+    public int getBufferSize() {
+        return response.getBufferSize();
     }
 
-    @Override
-    public boolean isCommitted() {
-        return false;
+    public String getCharacterEncoding() {
+        return response.getCharacterEncoding();
     }
 
-    @Override
-    public void reset() {
-
-    }
-
-    @Override
-    public void setLocale(Locale locale) {
-
-    }
-
-    @Override
     public Locale getLocale() {
-        return null;
+        return response.getLocale();
     }
+
+    public ServletOutputStream getOutputStream() throws IOException {
+        return response.getOutputStream();
+    }
+
+    public PrintWriter getWriter() throws IOException {
+        return response.getWriter();
+    }
+
+    public boolean isCommitted() {
+        return response.isCommitted();
+    }
+
+    public void reset() {
+        response.reset();
+    }
+
+    public void resetBuffer() {
+        response.resetBuffer();
+    }
+
+    public void setBufferSize(int size) {
+        response.setBufferSize(size);
+    }
+
+    public void setContentLength(int length) {
+        response.setContentLength(length);
+    }
+
+    public void setContentType(String type) {
+        response.setContentType(type);
+    }
+
+    public void setLocale(Locale locale) {
+        response.setLocale(locale);
+    }
+
 }

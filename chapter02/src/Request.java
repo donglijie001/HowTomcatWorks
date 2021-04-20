@@ -13,6 +13,7 @@ import java.util.Map;
  * @date 4/18/21 7:45 PM
  */
 public class Request implements ServletRequest {
+
     private InputStream input;
     private String uri;
 
@@ -24,12 +25,6 @@ public class Request implements ServletRequest {
         return uri;
     }
 
-    /**
-     * 解析url
-     *
-     * @param requestString
-     * @return
-     */
     private String parseUri(String requestString) {
         int index1, index2;
         index1 = requestString.indexOf(' ');
@@ -39,7 +34,6 @@ public class Request implements ServletRequest {
                 return requestString.substring(index1 + 1, index2);
         }
         return null;
-
     }
 
     public void parse() {
@@ -49,194 +43,115 @@ public class Request implements ServletRequest {
         byte[] buffer = new byte[2048];
         try {
             i = input.read(buffer);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             i = -1;
         }
-        for (int j = 0; j < i; j++) {
+        for (int j=0; j<i; j++) {
             request.append((char) buffer[j]);
         }
         System.out.print(request.toString());
         uri = parseUri(request.toString());
     }
-    // 下面的方法都是继承servletRequest的方法
-    @Override
-    public Object getAttribute(String s) {
+
+    /* implementation of the ServletRequest*/
+    public Object getAttribute(String attribute) {
         return null;
     }
 
-    @Override
-    public Enumeration<String> getAttributeNames() {
+    public Enumeration getAttributeNames() {
         return null;
     }
 
-    @Override
-    public String getCharacterEncoding() {
+    public String getRealPath(String path) {
         return null;
     }
 
-    @Override
-    public void setCharacterEncoding(String s) throws UnsupportedEncodingException {
-
-    }
-
-    @Override
-    public int getContentLength() {
-        return 0;
-    }
-
-    @Override
-    public String getContentType() {
+    public RequestDispatcher getRequestDispatcher(String path) {
         return null;
     }
 
-    @Override
-    public ServletInputStream getInputStream() throws IOException {
-        return null;
-    }
-
-    @Override
-    public String getParameter(String s) {
-        return null;
-    }
-
-    @Override
-    public Enumeration<String> getParameterNames() {
-        return null;
-    }
-
-    @Override
-    public String[] getParameterValues(String s) {
-        return new String[0];
-    }
-
-    @Override
-    public Map<String, String[]> getParameterMap() {
-        return null;
-    }
-
-    @Override
-    public String getProtocol() {
-        return null;
-    }
-
-    @Override
-    public String getScheme() {
-        return null;
-    }
-
-    @Override
-    public String getServerName() {
-        return null;
-    }
-
-    @Override
-    public int getServerPort() {
-        return 0;
-    }
-
-    @Override
-    public BufferedReader getReader() throws IOException {
-        return null;
-    }
-
-    @Override
-    public String getRemoteAddr() {
-        return null;
-    }
-
-    @Override
-    public String getRemoteHost() {
-        return null;
-    }
-
-    @Override
-    public void setAttribute(String s, Object o) {
-
-    }
-
-    @Override
-    public void removeAttribute(String s) {
-
-    }
-
-    @Override
-    public Locale getLocale() {
-        return null;
-    }
-
-    @Override
-    public Enumeration<Locale> getLocales() {
-        return null;
-    }
-
-    @Override
     public boolean isSecure() {
         return false;
     }
 
-    @Override
-    public RequestDispatcher getRequestDispatcher(String s) {
+    public String getCharacterEncoding() {
         return null;
     }
 
-    @Override
-    public String getRealPath(String s) {
-        return null;
-    }
-
-    @Override
-    public int getRemotePort() {
+    public int getContentLength() {
         return 0;
     }
 
-    @Override
-    public String getLocalName() {
+    public String getContentType() {
         return null;
     }
 
-    @Override
-    public String getLocalAddr() {
+    public ServletInputStream getInputStream() throws IOException {
         return null;
     }
 
-    @Override
-    public int getLocalPort() {
+    public Locale getLocale() {
+        return null;
+    }
+
+    public Enumeration getLocales() {
+        return null;
+    }
+
+    public String getParameter(String name) {
+        return null;
+    }
+
+    public Map getParameterMap() {
+        return null;
+    }
+
+    public Enumeration getParameterNames() {
+        return null;
+    }
+
+    public String[] getParameterValues(String parameter) {
+        return null;
+    }
+
+    public String getProtocol() {
+        return null;
+    }
+
+    public BufferedReader getReader() throws IOException {
+        return null;
+    }
+
+    public String getRemoteAddr() {
+        return null;
+    }
+
+    public String getRemoteHost() {
+        return null;
+    }
+
+    public String getScheme() {
+        return null;
+    }
+
+    public String getServerName() {
+        return null;
+    }
+
+    public int getServerPort() {
         return 0;
     }
 
-    @Override
-    public ServletContext getServletContext() {
-        return null;
+    public void removeAttribute(String attribute) {
     }
 
-    @Override
-    public AsyncContext startAsync() {
-        return null;
+    public void setAttribute(String key, Object value) {
     }
 
-    @Override
-    public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse) {
-        return null;
+    public void setCharacterEncoding(String encoding)
+            throws UnsupportedEncodingException {
     }
 
-    @Override
-    public boolean isAsyncStarted() {
-        return false;
-    }
-
-    @Override
-    public boolean isAsyncSupported() {
-        return false;
-    }
-
-    @Override
-    public AsyncContext getAsyncContext() {
-        return null;
-    }
-
-    @Override
-    public DispatcherType getDispatcherType() {
-        return null;
-    }
 }

@@ -11,6 +11,7 @@ import java.util.Locale;
  * @date 4/18/21 7:46 PM
  */
 public class Response implements ServletResponse {
+
     private static final int BUFFER_SIZE = 1024;
     Request request;
     OutputStream output;
@@ -24,14 +25,13 @@ public class Response implements ServletResponse {
         this.request = request;
     }
 
-    // 响应静态资源
-    public void sendStaticResource()throws IOException {
+    /* This method is used to serve a static page */
+    public void sendStaticResource() throws IOException {
         byte[] bytes = new byte[BUFFER_SIZE];
         FileInputStream fis = null;
         try {
             /* request.getUri has been replaced by request.getRequestURI */
             File file = new File(Constants.WEB_ROOT, request.getUri());
-            System.out.println(request.getUri()+"------");
             fis = new FileInputStream(file);
       /*
          HTTP Response = Status-Line
@@ -57,25 +57,31 @@ public class Response implements ServletResponse {
                 fis.close();
             }
         }
-
     }
 
-    @Override
+
+    /**
+     * implementation of ServletResponse
+     */
+    public void flushBuffer() throws IOException {
+    }
+
+    public int getBufferSize() {
+        return 0;
+    }
+
     public String getCharacterEncoding() {
         return null;
     }
 
-    @Override
-    public String getContentType() {
+    public Locale getLocale() {
         return null;
     }
 
-    @Override
     public ServletOutputStream getOutputStream() throws IOException {
         return null;
     }
 
-    @Override
     public PrintWriter getWriter() throws IOException {
         // autoflush is true, println() will flush,
         // but print() will not.
@@ -83,58 +89,25 @@ public class Response implements ServletResponse {
         return writer;
     }
 
-    @Override
-    public void setCharacterEncoding(String s) {
-
-    }
-
-    @Override
-    public void setContentLength(int i) {
-
-    }
-
-    @Override
-    public void setContentType(String s) {
-
-    }
-
-    @Override
-    public void setBufferSize(int i) {
-
-    }
-
-    @Override
-    public int getBufferSize() {
-        return 0;
-    }
-
-    @Override
-    public void flushBuffer() throws IOException {
-
-    }
-
-    @Override
-    public void resetBuffer() {
-
-    }
-
-    @Override
     public boolean isCommitted() {
         return false;
     }
 
-    @Override
     public void reset() {
-
     }
 
-    @Override
+    public void resetBuffer() {
+    }
+
+    public void setBufferSize(int size) {
+    }
+
+    public void setContentLength(int length) {
+    }
+
+    public void setContentType(String type) {
+    }
+
     public void setLocale(Locale locale) {
-
-    }
-
-    @Override
-    public Locale getLocale() {
-        return null;
     }
 }
