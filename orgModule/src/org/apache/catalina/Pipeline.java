@@ -165,7 +165,7 @@ public interface Pipeline {
      * @exception ServletException if a servlet exception is thrown
      */
     public void invoke(Request request, Response response)
-        throws IOException, ServletException;
+        throws IOException, ServletException, ServletException;
 
 
     /**
