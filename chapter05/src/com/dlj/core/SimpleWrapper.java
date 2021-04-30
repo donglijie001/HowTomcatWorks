@@ -90,19 +90,19 @@ public class SimpleWrapper implements Wrapper, Pipeline {
     }
 
     public String getName() {
-        return null;
+        return name;
     }
 
     public void setName(String name) {
-
+        this.name=name;
     }
 
     public Container getParent() {
-        return null;
+        return parent;
     }
 
     public void setParent(Container container) {
-
+        parent=container;
     }
 
     public ClassLoader getParentClassLoader() {
