@@ -5,6 +5,7 @@ import com.dlj.valves.ClientIPLoggerValve;
 import com.dlj.valves.HeaderLoggerValve;
 import org.apache.catalina.*;
 import org.apache.catalina.connector.http.HttpConnector;
+import org.apache.catalina.logger.FileLogger;
 
 /**
  * @author lijiedong
@@ -35,6 +36,17 @@ public class BootStrap2 {
         // context.addServletMapping(pattern, name);
         context.addServletMapping("/Primitive", "Primitive");
         context.addServletMapping("/Modern", "Modern");
+        // ------ add logger --------
+        // 设置日志文件的存储目录
+        System.setProperty("catalina.base", System.getProperty("user.dir"));
+        FileLogger logger = new FileLogger();
+        logger.setPrefix("FileLog_");
+        logger.setSuffix(".txt");
+        logger.setTimestamp(true);
+        logger.setDirectory("webroot");
+        context.setLogger(logger);
+
+        //---------------------------
         connector.setContainer(context);
         try {
             connector.initialize();
